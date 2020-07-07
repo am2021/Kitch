@@ -1,0 +1,14 @@
+.navbar {
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    display: block;
+}
+
+.filter-white {
+    filter: invert(83%) sepia(100%) saturate(0%) hue-rotate(308deg) brightness(107%) contrast(103%);
+}
