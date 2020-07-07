@@ -2,6 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Kitch
 
-Recipe app implementation with ReactJS
+Recipe app implementation with ReactJS + ReactBootstrap
 
 
