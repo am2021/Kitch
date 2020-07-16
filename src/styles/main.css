@@ -3,3 +3,7 @@
     width: 800px;
     position: relative;
 }
+
+#formContainer {
+    padding-top: 2.5rem;
+}
