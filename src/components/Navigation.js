@@ -5,6 +5,7 @@ import facebook from "../img/icons8-facebook.svg"
 import instagram from "../img/icons8-instagram.svg"
 import twitter from "../img/icons8-twitter.svg"
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
+import { Link } from "react-router-dom"
 
 
 
@@ -39,7 +40,7 @@ const Navigation = () => {
                         </Nav.Link>
                     </Nav>
                 </NavbarCollapse>
-                <NavbarBrand href="#">
+                <NavbarBrand href="/#">
                     <img
                         src={logo}
                         width='50'
@@ -52,8 +53,8 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link href="#login">Login</Nav.Link>
-                        <Nav.Link href="#signup">Signup</Nav.Link>
+                        <Link to="/login"><Nav.Link href="#login">Login</Nav.Link></Link>
+                        <Link to="/signup"><Nav.Link href="#signup">Signup</Nav.Link></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -2,10 +2,12 @@ import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import ingredients from "../img/ingredients.png"
 import cooking from "../img/cooking.png"
+import Message from '../components/Message'
 
-const Main = () => {
+const Home = () => {
     return(
         <div>
+            <Message />
             <Container>
                 <Row className="justify-content-md-center">
                     <Col id="column">
@@ -20,4 +22,4 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Home
