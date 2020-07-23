@@ -1,12 +1,11 @@
 import React,{ Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import firebase from 'firebase';
+import firebase from './firebase';
 //import { StyleSheet, Text, View, TextInput, Alert, ActivityIndicator } from 'react';
-
-
+import login from '../pages/Login'
 export default class SignupForm extends Component {
   
-    constructor(props) {
+    constructor() {
       super();
       this.state = { 
         firstName: '',
@@ -15,16 +14,25 @@ export default class SignupForm extends Component {
         email: '', 
         isLoading: false
       }
+      this.handleChange = this.handleChange.bind(this);
+
+     // this.registerUser = this.registerUser.bind(this);
     }
-  
+  /*
     updateInputVal = (val, prop) => {
       const state = this.state;
       state[prop] = val;
       this.setState(state);
-    }
+    }*/
+    handleChange (evt) {
+        this.setState({ [evt.target.name]: evt.target.value });
+      }
+    
   
     registerUser = () => {
         console.log('Function called')
+        console.log(this.props.email)
+        console.log(this.state.email)
 
       if(this.state.email === '' && this.state.password === '') {
        // Alert.alert('Enter details to signup!')
@@ -49,7 +57,9 @@ export default class SignupForm extends Component {
             email: '', 
             password: ''
           })
-          this.props.navigation.navigate('Login')
+          window.Location = '../pages/Login'
+          this.props.history.push('/login')
+          //this.props.navigation.navigate('Login')
         })
         .catch(error => this.setState({ errorMessage: error.message }))      
       }
@@ -65,20 +75,21 @@ export default class SignupForm extends Component {
       }    
       return(
         <div>
-            <Form onSubmit={this.registerUser()}>
+
+            <Form>
                <Form.Group controlId="formBasicLastName">
                     <Form.Label>First name</Form.Label>
-                    <Form.Control placeholder="First name" value = {this.props.firstName} />
+                    <Form.Control placeholder="First name" name="firstName" onChange={this.handleChange} />
                 </Form.Group>
                 
                 <Form.Group controlId="formBasicLastName">
                     <Form.Label>Last name</Form.Label>
-                    <Form.Control placeholder="Last name" value = {this.props.lastName} />
+                    <Form.Control placeholder="Last name" name="lastName" onChange={this.handleChange} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value = {this.props.email} />
+                    <Form.Control type="email" placeholder="Enter email" name="email"  onChange={this.handleChange} />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text>
@@ -86,10 +97,10 @@ export default class SignupForm extends Component {
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value = {this.props.password} />
+                    <Form.Control type="password" placeholder="Password" name="password" onChange={this.handleChange} />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" onClick={this.registerUser}>
                     Sign-up
                 </Button>
             </Form>
