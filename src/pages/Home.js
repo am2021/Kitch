@@ -7,8 +7,10 @@ import Search from '../components/Search'
 
 const Home = () => {
     const axios = require("axios");
-    // const [ recipes, setRecipes ] = useState([])
+    const [ recipes, setRecipes ] = useState([])
     const [ recipeFilter, setRecipeFilter ] = useState('')
+    var self = this;
+    
 
     const handleRecipeFilter = (event) => {
         setRecipeFilter(event.target.value)
@@ -29,11 +31,11 @@ const Home = () => {
                 "x-rapidapi-key":"903c62b802msh6ebe5f0e5deed15p17b2b6jsn8271aca746af",
                 "useQueryString":true
                 },"params":{
-                "q":{recipeFilter}
+                "q":"chicken"
                 }
                 })
                 .then((response)=>{
-                  console.log(response)
+                  console.log(response);
                 })
                 .catch((error)=>{
                   console.log(error)
