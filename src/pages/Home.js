@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap'
-import ingredients from "../img/ingredients.png"
-import cooking from "../img/cooking.png"
+import Recipe from "../components/Recipe"
+import Ingredients from "../components/Ingredients"
 import Message from '../components/Message'
 import Search from '../components/Search'
+import Axios from 'axios';
 
 const Home = () => {
-    const axios = require("axios");
     const [ recipes, setRecipes ] = useState([])
     const [ recipeFilter, setRecipeFilter ] = useState('')
-    var self = this;
-    
+    const [ ingredients, setIngredients ] = useState([])
+    const [ ingredientsFilter, setIngredientsFilter ] = useState('')
+
+    const APP_ID = "b53592e8"
+    const APP_KEY = "6fc0997c3b3fc56715a2f2922b74fc43"
+    const APP_ID2 = "57f3a7f1"
+    const APP_KEY2 = "b587add8e9ced7f185ebb87995316ff3"
+
+    const url = `https://api.edamam.com/search?q=${recipeFilter}&app_id=${APP_ID}&app_key=${APP_KEY}`
+    const url1 = `https://api.edamam.com/api/food-database/v2/parser?&ingr=${ingredientsFilter}&app_id=${APP_ID2}&app_key=${APP_KEY2}`
+
+    const getData = async () => {
+        if (recipeFilter !== "") {
+            const result = await Axios.get(url)
+
+            if(!result.data.more) {
+                console.log("no results")
+            }
+            
+            console.log(result.data.hits)
+            setRecipes(result.data.hits)
+        } else {
+            console.log("empty query")
+        }
+    }
 
     const handleRecipeFilter = (event) => {
         setRecipeFilter(event.target.value)
@@ -18,37 +41,38 @@ const Home = () => {
 
     const handleRecipeSubmit = (event) => {
         event.preventDefault()
+        getData()
+    }
 
-        if(recipeFilter.length < 1) {
-            console.log("nothing")
+    const getData1 = async () => {
+        if (ingredientsFilter !== "") {
+            const result1 = await Axios.get(url1)
+
+            if(!result1.data.more) {
+                console.log("no results")
+            }
+            
+            console.log(result1.data.hints)
+            setIngredients(result1.data.hints)
         } else {
-            axios({
-                "method":"GET",
-                "url":"https://edamam-recipe-search.p.rapidapi.com/search",
-                "headers":{
-                "content-type":"application/octet-stream",
-                "x-rapidapi-host":"edamam-recipe-search.p.rapidapi.com",
-                "x-rapidapi-key":"903c62b802msh6ebe5f0e5deed15p17b2b6jsn8271aca746af",
-                "useQueryString":true
-                },"params":{
-                "q":"chicken"
-                }
-                })
-                .then((response)=>{
-                  console.log(response);
-                })
-                .catch((error)=>{
-                  console.log(error)
-                })
+            console.log("empty query")
         }
     }
-    
+
+    const handleIngredientsFilter = (event) => {
+        setIngredientsFilter(event.target.value)
+    }
+
+    const handleIngredientsSubmit = (event) => {
+        event.preventDefault()
+        getData1()
+    }
 
 
     return(
         <div>
             <Message />
-            <Container>
+            {/* <Container>
                 <Row className="justify-content-md-center">
                     <Col id="column">
                         <Image src={cooking} rounded fluid></Image>
@@ -57,14 +81,20 @@ const Home = () => {
                         <Image src={ingredients} rounded fluid></Image>
                     </Col>
                 </Row>
-            </Container>
+            </Container> */}
             <Container>
                 <Row className="justify-content-md-center">
                     <Col id="column">
-                        <Search text="Search for recipes" button="go" handleFilterChange={handleRecipeFilter} handleSubmit={handleRecipeSubmit}/>
+                        <Search text="Search for recipes" button="go" onChange={handleRecipeFilter} onSubmit={handleRecipeSubmit}/>
+                        <div class="recipes">
+                            {recipes !== [] && recipes.map(recipe => <Recipe key={recipe.label} recipe={recipe} />)}
+                        </div>
                     </Col>
                     <Col id="column">
-                        {/* <Search text="Search for ingredients" button="go"/> */}
+                        <Search text="Search for ingredients" button="go" onChange={handleIngredientsFilter} onSubmit={handleIngredientsSubmit}/>
+                        <div class="ingredients">
+                            {ingredients !== [] && ingredients.map(ingredient => <Ingredients key={ingredient.label} ingredient={ingredient.food} />)}
+                        </div>
                     </Col>
                 </Row>
             </Container>
@@ -72,4 +102,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Home;

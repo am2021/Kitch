@@ -1,14 +1,14 @@
 import React from 'react'
 import { InputGroup, FormControl, Button } from 'react-bootstrap'
 
-const Search = ({ text, button, handleFilterChange, handleSubmit }) => {
+const Search = ({ text, button, onChange, onSubmit }) => {
     return(
         <div>
             <InputGroup>
-                <FormControl placeholder={text} onKeyUp={handleFilterChange}/>
+                <FormControl placeholder={text} onKeyUp={onChange}/>
                 
                 <InputGroup.Append>
-                    <Button variant="outline-secondary" onClick={handleSubmit}>{button}</Button>
+                    <Button variant="outline-secondary" onClick={onSubmit}>{button}</Button>
                 </InputGroup.Append>    
             </InputGroup>
         </div>

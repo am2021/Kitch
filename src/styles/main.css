@@ -7,3 +7,22 @@
 #formContainer {
     padding-top: 2.5rem;
 }
+
+#recipe {
+    padding-top: 2.5rem;
+}
+
+.recipes img {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    display: block;
+}
+
+.recipes h3 {
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    vertical-align: center;
+    height: 40px;
+}
