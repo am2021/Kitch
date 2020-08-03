@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import firebase from './firebase'
-import welcome from '../img/welcome.jpg'
 
 export default class LoginForm extends Component {
     constructor() {
@@ -38,6 +37,7 @@ export default class LoginForm extends Component {
               password: ''
             })
             this.props.navigation.navigate('Dashboard')
+
           })
           .catch(error => this.setState({ errorMessage: error.message }))
         }
