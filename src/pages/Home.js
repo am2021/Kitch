@@ -90,12 +90,6 @@ const Home = () => {
                             {recipes !== [] && recipes.map(recipe => <Recipe key={recipe.label} recipe={recipe} />)}
                         </div>
                     </Col>
-                    <Col id="column">
-                        <Search text="Search for ingredients" button="go" onChange={handleIngredientsFilter} onSubmit={handleIngredientsSubmit}/>
-                        <div class="ingredients">
-                            {ingredients !== [] && ingredients.map(ingredient => <Ingredients key={ingredient.label} ingredient={ingredient.food} />)}
-                        </div>
-                    </Col>
                 </Row>
             </Container>
         </div>

@@ -2,7 +2,8 @@ import React from "react"
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 const Recipe = ({ recipe }) => {
-    const { label, image } = recipe.recipe;
+    const { label, image, shareAs, calories } = recipe.recipe;
+    var calorieCount = parseInt(calories)
 
     return(
         <Container id="recipe" className="justify-content-md-center">
@@ -11,7 +12,8 @@ const Recipe = ({ recipe }) => {
                     <Image src={image} roundedCircle />
                 </Col>
                 <Col>
-                    <h3>{label}</h3>
+                    <a href={shareAs}><h3>{label}</h3></a>
+                    <h4>Calories: {calorieCount}</h4>
                 </Col>
             </Row>
         </Container>

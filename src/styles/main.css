@@ -26,3 +26,10 @@
     vertical-align: center;
     height: 40px;
 }
+
+.recipes h4 {
+    position: absolute;
+    top: 50%;
+    vertical-align: center;
+    height: 40px;
+}
