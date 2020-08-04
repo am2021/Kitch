@@ -52,9 +52,8 @@ const Navigation = () => {
                 </NavbarBrand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
-                        <Link to="/login"><Nav.Link href="#login">Login</Nav.Link></Link>
-                        <Link to="/signup"><Nav.Link href="#signup">Signup</Nav.Link></Link>
+                    <Nav className="ml-auto" id = "out">
+                        <Link to="/" ><Nav.Link href="#login">Logout</Nav.Link> </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -63,3 +62,9 @@ const Navigation = () => {
 }
 
 export default Navigation
+
+/*
+                        <Link to="/signup"><Nav.Link href="#signup">Signup</Nav.Link></Link>
+
+*/
+

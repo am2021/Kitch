@@ -1,6 +1,8 @@
 import React,{ Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import firebase from './firebase';
+import { Redirect } from 'react-router-dom';
+
 //import { StyleSheet, Text, View, TextInput, Alert, ActivityIndicator } from 'react';
 import login from '../pages/Login'
 export default class SignupForm extends Component {
@@ -12,7 +14,8 @@ export default class SignupForm extends Component {
         lastName: '',
         password: '',
         email: '', 
-        isLoading: false
+        isLoading: false,
+        redirect: false
       }
       this.handleChange = this.handleChange.bind(this);
 
@@ -55,7 +58,8 @@ export default class SignupForm extends Component {
             firstName: '',
             lastName: '',
             email: '', 
-            password: ''
+            password: '',
+            redirect: true
           })
           window.Location = '../pages/Login'
           this.props.history.push('/login')
@@ -66,6 +70,9 @@ export default class SignupForm extends Component {
     }
   
     render() {
+      if(this.state.redirect){
+        return <Redirect to='/'/>;
+      }
       if(this.state.isLoading){
         /*return(
           <View>

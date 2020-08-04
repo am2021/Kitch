@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import firebase from './firebase'
+import Navigation from './Navigation';
+import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends Component {
     constructor() {
@@ -8,7 +10,8 @@ export default class LoginForm extends Component {
         this.state = { 
           email: '', 
           password: '',
-          isLoading: false
+          isLoading: false,
+          redirect: false
         }
         this.handleChange = this.handleChange.bind(this);
 
@@ -31,19 +34,26 @@ export default class LoginForm extends Component {
           .then((res) => {
             console.log(res)
             console.log('User logged-in successfully!')
+            console.log('redirect')
+
             this.setState({
               isLoading: false,
               email: '', 
-              password: ''
+              password: '',
+              redirect: true
             })
-            this.props.navigation.navigate('Dashboard')
-
+            //this.props.navigation.navigate('/home')
+            console.log('redirect')
+           
           })
           .catch(error => this.setState({ errorMessage: error.message }))
         }
       }
 
       render() {
+        if(this.state.redirect){
+          return <Redirect to='/home'/>;
+        }
         if(this.state.isLoading){
          /* return(
             <View style={styles.preloader}>
