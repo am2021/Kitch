@@ -4,4 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Recipe app implementation with ReactJS + ReactBootstrap
 
-
+## Getting started
+cd .
+npm install
+npm start
