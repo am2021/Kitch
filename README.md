@@ -6,5 +6,7 @@ Recipe app implementation with ReactJS + ReactBootstrap
 
 ## Getting started
 cd .
+
 npm install
+
 npm start
